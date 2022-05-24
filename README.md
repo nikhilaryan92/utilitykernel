@@ -20,6 +20,6 @@ Our manuscipt titled with "Utility Kernel for Breast Cancer Survival Estimation"
 # Usage
 utility_svm.py
 
--> Running the utility_svm.py will produce a file "output.csv" and "......._results.csv", where ..... stands for the modality name or combination of modalities. First row of the "output.csv" shows the true class labels of all instances followed by the predicted class labels from particular modalities which have not been commented out from the if-else conditions. "......._results.csv" shows the values of Area under ROC curves and tp, tn, fp and fn from particular modalities which have not been commented out from the if-else conditions.
+-> Running the utility_svm.py will produce a file "output.csv" and "......._results.csv", where ..... stands for the modality name or combination of modalities. First row of the "output.csv" shows the true class labels of all instances followed by the predicted class labels from particular modalities for which utility SVM has been executed. "......._results.csv" shows the values of Area under ROC curves and tp, tn, fp and fn from particular modalities for which utility SVM has been executed.
 
 
