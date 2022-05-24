@@ -153,7 +153,7 @@ def model_run(X,filename,final_df):
 	roc_auc_new =0
 
 	filepath = './svm.sav'
-	for itr in range(0,1000): 
+	for itr in range(0,1): 
 		data=data_sampler(long_data,short_data)
 		X = data[:,0:data.shape[1]-1]
 		y = data[:,data.shape[1]-1]
@@ -181,7 +181,7 @@ def model_run(X,filename,final_df):
 	print(roc)
 	results = np.append(roc,tn_fp_fn_tp)
 
-	results_csv = open(os.path.join(path,result_file), "a")
+	results_csv = open(result_file, "a")
 
 	# loop over the class labels and extracted features
 	vec = ",".join([str(v) for v in results])
@@ -204,36 +204,36 @@ for i in range(1,16):
 	# uni-modal
 	if(i==1):
 		final_df= model_run(CLN,'CLN',final_df)
-	elif(i==2):
+	if(i==2):
 		final_df= model_run(WSI,'WSI',final_df)
-	elif(i==3):
+	if(i==3):
 		final_df= model_run(EXP,'EXP',final_df)
-	elif(i==4):
+	if(i==4):
 		final_df= model_run(CNV,'CNV',final_df)
 	# bi-modal
-	# elif(i==5):
-	# 	model_run(CLN_EXP,'CLN_EXP',final_df)
-	# elif(i==6):
-	# 	model_run(CLN_CNV,'CLN_CNV,final_df')
-	# elif(i==7):
-	# 	model_run(CLN_WSI,'CLN_WSI',final_df)
-	# elif(i==8):
-	# 	model_run(EXP_CNV,'EXP_CNV',final_df)
-	# elif(i==9):
-	# 	model_run(EXP_WSI,'EXP_WSI',final_df)	
-	# elif(i==10):
-	# 	model_run(CNV_WSI,'CNV_WSI',final_df)
+	if(i==5):
+		final_df= model_run(CLN_EXP,'CLN_EXP',final_df)
+	if(i==6):
+		final_df= model_run(CLN_CNV,'CLN_CNV',final_df)
+	if(i==7):
+		final_df= model_run(CLN_WSI,'CLN_WSI',final_df)
+	if(i==8):
+		final_df= model_run(EXP_CNV,'EXP_CNV',final_df)
+	if(i==9):
+		final_df= model_run(EXP_WSI,'EXP_WSI',final_df)	
+	if(i==10):
+		final_df= model_run(CNV_WSI,'CNV_WSI',final_df)
 	# tri-modal
-	# elif(i==11):
-	# 	model_run(CLN_EXP_CNV,'CLN_EXP_CNV',final_df)
-	# elif(i==12):
-	# 	model_run(CLN_EXP_WSI,'CLN_EXP_WSI',final_df)
-	# elif(i==13):
-	# 	model_run(EXP_CNV_WSI,'EXP_CNV_WSI',final_df)
-	# elif(i==14):
-	# 	model_run(CNV_CLN_WSI,'CNV_CLN_WSI',final_df)
+	if(i==11):
+		final_df= model_run(CLN_EXP_CNV,'CLN_EXP_CNV',final_df)
+	if(i==12):
+		final_df= model_run(CLN_EXP_WSI,'CLN_EXP_WSI',final_df)
+	if(i==13):
+		final_df= model_run(EXP_CNV_WSI,'EXP_CNV_WSI',final_df)
+	if(i==14):
+		final_df= model_run(CNV_CLN_WSI,'CNV_CLN_WSI',final_df)
 	# quad-modal
-	elif(i==15):
+	if(i==15):
 		final_df= model_run(multimodal,'multimodal',final_df)
 
 # save the dataframe as a csv file
