@@ -90,21 +90,21 @@ def ncr(n, r):
     return numer // denom  # or / in Python 2
 
 #Loding and early fusion of multimodal data of TCGA-BRCA
-X_CLN = np.loadtxt(os.path.join(path,'tcga_cln_final.csv'), delimiter=",")
-X_WSI = np.loadtxt(os.path.join(path,'tcga_allWSIpatchfused.csv'), delimiter=",")
-X_EXP = np.loadtxt(os.path.join(path,'tcga_exp_final.csv'), delimiter=",")
-X_CNV = np.loadtxt(os.path.join(path,'tcga_cnv_final.csv'), delimiter=",")
-X_CLN_EXP     = np.concatenate((X_CLN,X_EXP),axis=1)
-X_CLN_CNV    = np.concatenate((X_CLN,X_CNV),axis=1)
-X_CLN_WSI     = np.concatenate((X_CLN,X_WSI),axis=1)
-X_EXP_CNV     = np.concatenate((X_EXP,X_CNV),axis=1)
-X_EXP_WSI     = np.concatenate((X_EXP,X_WSI),axis=1)
-X_CNV_WSI     = np.concatenate((X_CNV,X_WSI),axis=1)
-X_CLN_EXP_CNV     = np.concatenate((X_CLN,X_EXP,X_CNV),axis=1)
-X_CLN_EXP_WSI     = np.concatenate((X_CLN,X_EXP,X_WSI),axis=1)
-X_EXP_CNV_WSI     = np.concatenate((X_EXP,X_CNV,X_WSI),axis=1)
-X_CNV_CLN_WSI     = np.concatenate((X_CNV,X_CLN,X_WSI),axis=1)
-X_multimodal     = np.concatenate((X_WSI,X_CLN,X_CNV,X_EXP),axis=1)
+CLN = np.loadtxt(os.path.join(path,'tcga_cln_final.csv'), delimiter=",")
+WSI = np.loadtxt(os.path.join(path,'tcga_allWSIpatchfused.csv'), delimiter=",")
+EXP = np.loadtxt(os.path.join(path,'tcga_exp_final.csv'), delimiter=",")
+CNV = np.loadtxt(os.path.join(path,'tcga_cnv_final.csv'), delimiter=",")
+CLN_EXP    = np.concatenate((CLN,EXP),axis=1)
+CLN_CNV    = np.concatenate((CLN,CNV),axis=1)
+CLN_WSI    = np.concatenate((CLN,WSI),axis=1)
+EXP_CNV    = np.concatenate((EXP,CNV),axis=1)
+EXP_WSI    = np.concatenate((EXP,WSI),axis=1)
+CNV_WSI    = np.concatenate((CNV,WSI),axis=1)
+CLN_EXP_CNV     = np.concatenate((CLN,EXP,CNV),axis=1)
+CLN_EXP_WSI     = np.concatenate((CLN,EXP,WSI),axis=1)
+EXP_CNV_WSI     = np.concatenate((EXP,CNV,WSI),axis=1)
+CNV_CLN_WSI     = np.concatenate((CNV,CLN,WSI),axis=1)
+multimodal     = np.concatenate((WSI,CLN,CNV,EXP),axis=1)
 y_multimodal 	  = np.loadtxt(os.path.join(path, survival_file_name))
 
 
@@ -203,38 +203,38 @@ final_df = pd.DataFrame(y_multimodal) # initializing the 1st column of final_df 
 for i in range(1,16):
 	# uni-modal
 	if(i==1):
-		final_df= model_run(X_CLN,'X_CLN',final_df)
+		final_df= model_run(CLN,'CLN',final_df)
 	elif(i==2):
-		final_df= model_run(X_WSI,'X_WSI',final_df)
+		final_df= model_run(WSI,'WSI',final_df)
 	elif(i==3):
-		final_df= model_run(X_EXP,'X_EXP',final_df)
+		final_df= model_run(EXP,'EXP',final_df)
 	elif(i==4):
-		final_df= model_run(X_CNV,'X_CNV',final_df)
+		final_df= model_run(CNV,'CNV',final_df)
 	# bi-modal
 	# elif(i==5):
-	# 	model_run(X_CLN_EXP,'X_CLN_EXP',final_df)
+	# 	model_run(CLN_EXP,'CLN_EXP',final_df)
 	# elif(i==6):
-	# 	model_run(X_CLN_CNV,'X_CLN_CNV,final_df')
+	# 	model_run(CLN_CNV,'CLN_CNV,final_df')
 	# elif(i==7):
-	# 	model_run(X_CLN_WSI,'X_CLN_WSI',final_df)
+	# 	model_run(CLN_WSI,'CLN_WSI',final_df)
 	# elif(i==8):
-	# 	model_run(X_EXP_CNV,'X_EXP_CNV',final_df)
+	# 	model_run(EXP_CNV,'EXP_CNV',final_df)
 	# elif(i==9):
-	# 	model_run(X_EXP_WSI,'X_EXP_WSI',final_df)	
+	# 	model_run(EXP_WSI,'EXP_WSI',final_df)	
 	# elif(i==10):
-	# 	model_run(X_CNV_WSI,'X_CNV_WSI',final_df)
+	# 	model_run(CNV_WSI,'CNV_WSI',final_df)
 	# tri-modal
 	# elif(i==11):
-	# 	model_run(X_CLN_EXP_CNV,'X_CLN_EXP_CNV',final_df)
+	# 	model_run(CLN_EXP_CNV,'CLN_EXP_CNV',final_df)
 	# elif(i==12):
-	# 	model_run(X_CLN_EXP_WSI,'X_CLN_EXP_WSI',final_df)
+	# 	model_run(CLN_EXP_WSI,'CLN_EXP_WSI',final_df)
 	# elif(i==13):
-	# 	model_run(X_EXP_CNV_WSI,'X_EXP_CNV_WSI',final_df)
+	# 	model_run(EXP_CNV_WSI,'EXP_CNV_WSI',final_df)
 	# elif(i==14):
-	# 	model_run(X_CNV_CLN_WSI,'X_CNV_CLN_WSI',final_df)
+	# 	model_run(CNV_CLN_WSI,'CNV_CLN_WSI',final_df)
 	# quad-modal
 	elif(i==15):
-		final_df= model_run(X_multimodal,'X_multimodal',final_df)
+		final_df= model_run(multimodal,'multimodal',final_df)
 
 # save the dataframe as a csv file
 final_df.to_csv('output.csv', header=False, index=False)
